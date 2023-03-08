@@ -6,6 +6,7 @@ local function StartResource()
 end
 
 local mysql <const> = {
+    ready = MySQL.ready,
     query = MySQL.query,
     query_await = MySQL.query.await,
     scalar = MySQL.scalar,
