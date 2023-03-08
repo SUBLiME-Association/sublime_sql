@@ -4,18 +4,19 @@ Config.players = {
     exist = "SELECT 1 FROM players",
     create = [[
         CREATE TABLE `players` (
-            `id` int(11) NOT NULL AUTO_INCREMENT,
-            `identifier` varchar(80) DEFAULT NULL,
-            `name` varchar(100) NOT NULL,
+            `identifier` varchar(80) NOT NULL,
+            `user` varchar(100) NOT NULL,
             `password` varchar(20) DEFAULT NULL,
-            `permission` varchar(40) DEFAULT NULL,
+            `permission` longtext NOT NULL ,
             `char` longtext DEFAULT NULL,
             `stats` longtext DEFAULT NULL,
             `lastUpdate` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-            PRIMARY KEY (`id`) USING BTREE
+            PRIMARY KEY (`identifier`) USING BTREE
         )
     ]],
-    select = "SELECT * FROM players"
+    select = "SELECT * FROM players",
+    playerExist = "SELECT 1 FROM players WHERE identifier = ?",
+    insert = "INSERT INTO players (`identifier`, `user`, `password`, `permission`, `char`, `stats`) VALUES (?, ?, ?, ?, ?, ?)"
 }
 
 Config.characters = {
